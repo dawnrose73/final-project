@@ -1,0 +1,9 @@
+.header__navigation {
+    min-width: 30%;
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.2em;
+    & > a {
+        color: #000;
+    }
+}
