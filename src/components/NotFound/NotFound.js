@@ -3,9 +3,9 @@ import './NotFound.scss';
 
 function NotFound() {
   return (
-    <main className="error">
+    <div className="error">
         <p>Oops! Something went wrong...</p>
-    </main>
+    </div>
   );
 }
 

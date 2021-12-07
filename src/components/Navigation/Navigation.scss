@@ -1,9 +1,54 @@
 .header__navigation {
-    min-width: 30%;
-    display: flex;
-    justify-content: space-between;
     font-size: 1.2em;
-    & > a {
-        color: #000;
+}
+
+.header__nav-link {
+    color: #000;  
+}
+
+@media (max-width: 767px) {
+    .header__links {
+        display: block;
+    }
+    .header__links > li {
+        margin: 0 0 20px 0;
+    }
+    .header__links > li:last-child {
+        margin: 0;
+    }
+    .header__navigation {
+        display: block;
+        position: fixed;
+        z-index: 1;
+        width: 100%;
+        top: -100%;
+        left: 0;
+        overflow: auto;
+        background-color: #fff;
+        padding: 120px 10px 20px 10px;
+        transition: all 0.5s ease-in-out 0s;
+        border-bottom: 1px solid #000;
+    }
+    // Тоже переделать в модификаторы
+    .header__navigation.active {
+        top: 0;
+    }
+}
+
+
+@media (min-width: 768px) {
+    .header__navigation {
+        min-width: 30%;
+        position: relative;
+        z-index: 12;
+    }
+    .header__links {
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+        z-index: 2;
+    }
+    .header__links > li {
+        margin-left: 20px;
     }
 }

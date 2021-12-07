@@ -5,8 +5,13 @@ body {
     font-family: 'Cinzel', serif;
 }
 
+#root {
+    height: 100%;
+}
+
 .container {
     width: 95%;
     max-width: 1240px;
+    height: 100%;
     margin: auto;
 }

@@ -1,0 +1,17 @@
+.footer {
+    height: 50px;
+    color: #000;
+    font-size: 1em; 
+}
+.footer__inner {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (min-width: 768px) {
+    .footer__inner {
+        justify-content: flex-start;
+    }
+}

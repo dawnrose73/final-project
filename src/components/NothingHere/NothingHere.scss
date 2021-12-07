@@ -1,7 +1,10 @@
-.error {
+.nothing {
     padding: 40px 0;
     font-size: 2em;
     width: 100%;
     display: flex;
     justify-content: center;
+}
+.nothing > p {
+    text-align: center;
 }

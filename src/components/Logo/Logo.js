@@ -6,7 +6,7 @@ function Logo() {
   return (
     <div className="logo">
         <img src={pokeballImage} alt=""></img>
-        <div>POKEDEX</div>
+        <span>POKEDEX</span>
     </div>
   );
 }

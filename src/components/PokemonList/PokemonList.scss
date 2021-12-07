@@ -1,9 +1,8 @@
 .pokemonlist {
     padding: 20px 0;
-    &__inner {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: flex-start;
-        justify-content: center;
-    }
+}
+.pokemonlist__inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
 }
