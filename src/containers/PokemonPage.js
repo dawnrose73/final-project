@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import Pokemon from '../Pokemon/Pokemon';
-import Loader from '../Loader/Loader';
+import Pokemon from '../components/Pokemon/Pokemon';
+import Loader from '../components/Loader/Loader';
+import { Context } from '../context/AppState';
 
-function PokemonPage({pokemons}) {
+function PokemonPage() {
+  const { pokemons } = useContext(Context);
   const params = useParams();
   const pokemonId = Number(params.pokemonId);
   const [abilities, setAbilities] = useState([]);
@@ -12,7 +14,6 @@ function PokemonPage({pokemons}) {
   const [types, setTypes] = useState([]);
   const [weight, setWeight] = useState(0);
   const [imageURL, setImageURL] = useState('');
-
   const [isOk, setIsOk] = useState(false);
 
   useEffect(() => {
@@ -27,7 +28,6 @@ function PokemonPage({pokemons}) {
       setTypes(getTypes(res.data));
       setWeight(res.data.weight);
       setImageURL(getImageURL(res.data));
-
       setIsOk(true);
     })
   }
@@ -35,11 +35,9 @@ function PokemonPage({pokemons}) {
   const getAbilities = (data) => {
     return data.abilities.map(item => item.ability.name);
   }
-
   const getTypes = (data) => {
     return data.types.map(item => item.type.name);
   }
-
   const getImageURL = (data) => {
     return data.sprites.other['official-artwork'].front_default;
   }
@@ -47,14 +45,16 @@ function PokemonPage({pokemons}) {
   return (
     <>
       {isOk ? 
-      <Pokemon  pokemonId={pokemonId}
-                name={name}
-                abilities={abilities}
-                types={types}
-                weight={weight}
-                imageURL={imageURL}
-                pokemons={pokemons}
-      /> : <Loader />}
+        <Pokemon  pokemonId={pokemonId}
+                  name={name}
+                  abilities={abilities}
+                  types={types}
+                  weight={weight}
+                  imageURL={imageURL}
+                  pokemons={pokemons}
+        /> : 
+        <Loader />
+      }
     </>
   );
 }

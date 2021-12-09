@@ -13,10 +13,10 @@ function Pokemon({pokemonId, name, abilities, types, weight, imageURL, pokemons}
             <div className="pokemon__types">types: {types.join(', ')}</div>
             <div className="pokemon__weight">weight: {weight}</div>
             <div className="pokemon__caught">caught: {pokemons[pokemonId - 1].caught ? String(pokemons[pokemonId - 1].caught) : 'no'}</div>
-            </div>
-            <div className="pokemon__image">
-                <img src={imageURL} alt={name} />
-            </div>
+          </div>
+          <div className="pokemon__image">
+              <img src={imageURL} alt={name} />
+          </div>
         </div>
       </div>
     </div>

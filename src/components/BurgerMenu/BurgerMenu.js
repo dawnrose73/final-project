@@ -4,14 +4,11 @@ import { MenuContext } from '../../context/NavState';
 
 function BurgerMenu() {
   const { isMenuOpen, toggleMenuMode } = useContext(MenuContext);
-
   const clickHandler = () => {
     toggleMenuMode();
   };
-
   return (
-    <button className={`header__burger ${isMenuOpen ? 'active' : ''}`}
-            aria-label="Открыть главное меню"
+    <button className={`header__burger ${isMenuOpen ? 'header__burger--active' : ''}`}
             onClick={clickHandler}>
         <span></span>
     </button>

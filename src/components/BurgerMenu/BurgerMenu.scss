@@ -5,7 +5,6 @@
   position: relative;
   z-index: 10;
 }
-
 .header__burger span {
   background-color: #000;
   position: absolute;
@@ -31,18 +30,15 @@
 .header__burger::after {
   bottom: 0;  
 }
-
-
-//Изменить active на модификатор
-.header__burger.active::before {
+.header__burger--active::before {
   transform: rotate(45deg);
   top: 8px;
 }
-.header__burger.active::after {
+.header__burger--active::after {
     transform: rotate(-45deg);
     bottom: 8px;
 }
-.header__burger.active span {
+.header__burger--active span {
     transform: scale(0);
 }
 

@@ -1,14 +1,10 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-
-const style = {
-  paddingTop: '100px',
-  flex: '1 1 auto',
-};
+import './Content.scss';
 
 function Content() {
   return (
-    <main className="content" style={style}>
+    <main className="content">
         <Outlet />
     </main>
   );

@@ -1,7 +1,6 @@
 .header__navigation {
     font-size: 1.2em;
 }
-
 .header__nav-link {
     color: #000;  
 }
@@ -10,10 +9,10 @@
     .header__links {
         display: block;
     }
-    .header__links > li {
+    .header__links li {
         margin: 0 0 20px 0;
     }
-    .header__links > li:last-child {
+    .header__links li:last-child {
         margin: 0;
     }
     .header__navigation {
@@ -29,8 +28,7 @@
         transition: all 0.5s ease-in-out 0s;
         border-bottom: 1px solid #000;
     }
-    // Тоже переделать в модификаторы
-    .header__navigation.active {
+    .header__navigation--active {
         top: 0;
     }
 }
@@ -48,7 +46,7 @@
         position: relative;
         z-index: 2;
     }
-    .header__links > li {
+    .header__links li {
         margin-left: 20px;
     }
 }

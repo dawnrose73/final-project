@@ -1,5 +1,12 @@
 @import './nullstyles.scss';
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500&display=swap');
+@font-face {
+    font-family: 'Cinzel';
+    src: local('Cinzel Medium'), local('Cinzel-Medium'),
+        url('./fonts/Cinzel-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
 
 body {
     font-family: 'Cinzel', serif;
