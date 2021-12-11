@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import PropTypes from 'prop-types';
 import { Context } from '../../containers/AppState';
 import './PokemonCard.scss';
 
@@ -13,6 +14,10 @@ function PokemonCard({ pokemon }) {
       <button className="card__catchBtn" disabled={pokemon.caught ? true : false}>Catch</button>
     </div>
   );
+}
+
+PokemonCard.propTypes = {
+  pokemon: PropTypes.object.isRequired,
 }
 
 export default PokemonCard;

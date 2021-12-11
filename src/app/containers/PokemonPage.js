@@ -27,7 +27,7 @@ function PokemonPage() {
       setAbilities(getAbilities(res.data));
       setName(res.data.name);
       setTypes(getTypes(res.data));
-      setWeight(res.data.weight);
+      setWeight(Number(res.data.weight));
       setImageURL(getImageURL(res.data));
       setIsOk(true);
     })

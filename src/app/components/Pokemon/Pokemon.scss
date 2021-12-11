@@ -10,19 +10,6 @@
     flex-direction: column;
     align-items: center;
 }
-.pokemon__image img {
-    width: 100%;
-    height: auto;
-}
-.pokemon__info { 
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   font-size: 1.5em;
-}
-.pokemon__info div {
-    margin: 5px 0;
-}
 
 @media (min-width: 768px) {
     .pokemon__inner {
@@ -34,17 +21,6 @@
             "pokemon__info pokemon__image";
         width: 100%; 
         height: 100%; 
-    }
-    .pokemon__image { 
-        grid-area: pokemon__image; 
-        display: flex;
-        justify-content: center;
-    }
-    .pokemon__info { 
-        grid-area: pokemon__info; 
-    }
-    .pokemon__info div {
-        margin: 20px 0;
     }
 }
 

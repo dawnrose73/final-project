@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import PokemonCard from '../PokemonCard/PokemonCard';
 import Loader from '../Loader/Loader';
 import './PokemonList.scss';
@@ -14,5 +15,10 @@ function PokemonList({ pokemons }) {
     </div>
   );
 }
+
+PokemonList.propTypes = {
+  pokemons: PropTypes.array.isRequired,
+}
+
   
 export default PokemonList;
