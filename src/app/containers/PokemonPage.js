@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import Pokemon from '../components/Pokemon/Pokemon';
 import Loader from '../components/Loader/Loader';
+import NotFound from '../components/NotFound/NotFound';
 import { Context } from './AppState';
 
 function PokemonPage() {
@@ -14,7 +15,8 @@ function PokemonPage() {
   const [types, setTypes] = useState([]);
   const [weight, setWeight] = useState(0);
   const [imageURL, setImageURL] = useState('');
-  const [isOk, setIsOk] = useState(false);
+  const [isDataLoaded, setIsDataLoaded] = useState(false);
+  const [isEverythingOK, setIsEverythingOK] = useState(true);
 
   useEffect(() => {
     getData(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`);
@@ -29,7 +31,10 @@ function PokemonPage() {
       setTypes(getTypes(res.data));
       setWeight(Number(res.data.weight));
       setImageURL(getImageURL(res.data));
-      setIsOk(true);
+      setIsDataLoaded(true);
+    })
+    .catch(err => {
+      setIsEverythingOK(false);
     })
   }
 
@@ -45,16 +50,19 @@ function PokemonPage() {
   
   return (
     <>
-      {isOk ? 
-        <Pokemon  pokemonId={pokemonId}
-                  name={name}
-                  abilities={abilities}
-                  types={types}
-                  weight={weight}
-                  imageURL={imageURL}
-                  pokemons={pokemons}
-        /> : 
-        <Loader />
+      {
+        isEverythingOK ? 
+        (isDataLoaded ? 
+            <Pokemon  pokemonId={pokemonId}
+                      name={name}
+                      abilities={abilities}
+                      types={types}
+                      weight={weight}
+                      imageURL={imageURL}
+                      pokemons={pokemons}
+            /> : 
+            <Loader />) :
+          <NotFound />
       }
     </>
   );

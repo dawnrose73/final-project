@@ -1,5 +1,3 @@
-/* autoprefixer grid: autoplace */
-
 .pokemon__info { 
     display: flex;
     flex-direction: column;
@@ -11,9 +9,6 @@
  }
 
  @media (min-width: 768px) {
-    .pokemon__info { 
-        grid-area: pokemon__info; 
-    }
     .pokemon__info div {
         margin: 20px 0;
     }

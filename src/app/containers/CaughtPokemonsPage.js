@@ -1,11 +1,9 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import PokemonList from '../components/PokemonList/PokemonList';
 import NothingHere from '../components/NothingHere/NothingHere';
-import { Context } from './AppState';
 
 function CaughtPokemonsPage() {
-  const { pokemons } = useContext(Context);
-  const caughtPokemons = pokemons.filter(pokemon => pokemon.caught);
+  const caughtPokemons = JSON.parse(localStorage.getItem('caughtPokemons')).sort((a, b) => a.id - b.id);
   return (
     <>
       {caughtPokemons.length ? 

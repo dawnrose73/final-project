@@ -17,6 +17,16 @@ function AppState({ children }) {
     const [fetching, setFetching] = useState(true);
     const [isEverythingOK, setIsEverythingOK] = useState(true);
 
+    function getDataFromLocal(newPokemons) {
+      const caughtPokemons = JSON.parse(localStorage.getItem('caughtPokemons'));
+      const caughtPokemonsMap = new Map(caughtPokemons.map(item => [item.id, item.caught]));
+      return newPokemons.map(pokemon => 
+        (caughtPokemonsMap.get(pokemon.id)) ? 
+          {...pokemon, caught: caughtPokemonsMap.get(pokemon.id)} :
+          pokemon
+      );
+      }
+
     useEffect(() => {
       if ((fetching && nextPage) || 
           (document.body.scrollHeight <= window.innerHeight && document.body.scrollTop === 0)) {  
@@ -29,9 +39,10 @@ function AppState({ children }) {
         url = checkIfLastPage(url) ? lastPage : url;
         axios.get(url)
         .then(response => {
-            const newPokemons = response.data.results.map((pokemon, index) => {
+            let newPokemons = response.data.results.map((pokemon, index) => {
               return { ...pokemon, id: pokemons.length + index + 1}
             })
+            newPokemons = getDataFromLocal(newPokemons);
             setPokemons([...pokemons, ...newPokemons]); 
             (url === lastPage) ? setNextPage(null) : setNextPage(response.data.next);
         })
@@ -66,10 +77,21 @@ function AppState({ children }) {
       return function(e) {
         if (e.target.classList.contains("card__catchBtn")) {
           const catchDate = new Date();
-          const updatedList = pokemons.map((pokemon) => 
-            (pokemon.id === id) 
-              ? { ...pokemon, caught: String(`${catchDate.getDate()}.${catchDate.getMonth() + 1}.${catchDate.getFullYear()}`) } 
-              : pokemon);
+          let caughtPokemons = JSON.parse(localStorage.getItem('caughtPokemons'));
+
+          const updatedList = pokemons.map(pokemon => {
+            if (pokemon.id === id) {
+              if (!caughtPokemons) {
+                caughtPokemons = [];
+              }
+              localStorage.setItem('caughtPokemons', 
+                JSON.stringify([ ...caughtPokemons, 
+                {...pokemon, caught: String(`${catchDate.getDate()}.${catchDate.getMonth() + 1}.${catchDate.getFullYear()}`)}])
+              )
+              return { ...pokemon, caught: String(`${catchDate.getDate()}.${catchDate.getMonth() + 1}.${catchDate.getFullYear()}`) };
+            }
+            return pokemon;
+          });
           setPokemons(updatedList);
         } else {
           navigate(`pokemons/${id}`);
