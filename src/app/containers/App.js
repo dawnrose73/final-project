@@ -1,22 +1,21 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import Header from '../Header/Header';
-import Logo from '../Logo/Logo';
-import Navigation from '../Navigation/Navigation';
-import BurgerMenu from '../BurgerMenu/BurgerMenu';
-import Content from '../Content/Content';
-import AllPokemonsPage from '../../containers/AllPokemonsPage';
-import CaughtPokemonsPage from '../../containers/CaughtPokemonsPage';
-import PokemonPage from '../../containers/PokemonPage';
-import Footer from '../Footer/Footer';
-import NotFound from '../NotFound/NotFound';
-import NavState from '../../context/NavState';
-import AppState from '../../context/AppState';
-import './App.scss';
+import Header from '../components/Header/Header';
+import Logo from '../components/Logo/Logo';
+import Navigation from '../components/Navigation/Navigation';
+import BurgerMenu from '../components/BurgerMenu/BurgerMenu';
+import Content from '../components/Content/Content';
+import AllPokemonsPage from './AllPokemonsPage';
+import CaughtPokemonsPage from './CaughtPokemonsPage';
+import PokemonPage from './PokemonPage';
+import Footer from '../components/Footer/Footer';
+import NotFound from '../components/NotFound/NotFound';
+import NavState from './NavState';
+import AppState from './AppState';
 
 function App() {
   return (
-    <div className="app">
+    <>
       <Header>
         <Logo />
         <NavState>
@@ -35,7 +34,7 @@ function App() {
         </Routes>
       </AppState>
       <Footer />
-    </div>
+    </>
   );
 }
 

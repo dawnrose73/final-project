@@ -1,6 +1,6 @@
 import React from 'react';
 import './Logo.scss';
-import pokeballImage from '../../img/pokeball.png';
+import pokeballImage from '../../../img/pokeball.png';
 
 function Logo() {
   return (

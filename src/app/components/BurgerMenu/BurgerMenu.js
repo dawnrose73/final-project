@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import './BurgerMenu.scss';
-import { MenuContext } from '../../context/NavState';
+import { MenuContext } from '../../containers/NavState';
 
 function BurgerMenu() {
   const { isMenuOpen, toggleMenuMode } = useContext(MenuContext);

@@ -1,7 +1,7 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import PokemonList from '../components/PokemonList/PokemonList';
 import NothingHere from '../components/NothingHere/NothingHere';
-import { Context } from '../context/AppState';
+import { Context } from './AppState';
 
 function CaughtPokemonsPage() {
   const { pokemons } = useContext(Context);

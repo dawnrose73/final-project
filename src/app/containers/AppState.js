@@ -5,7 +5,8 @@ import axios from 'axios';
 export const Context = createContext({
     pokemons: [],
     clickHandler: () => {},
-    scrollHandler: () => {}
+    scrollHandler: () => {},
+    isEverythingOK: true,
 });
   
 function AppState({ children }) {
@@ -14,17 +15,18 @@ function AppState({ children }) {
     const [pokemons, setPokemons] = useState([]);
     const [nextPage, setNextPage] = useState(mainPage);
     const [fetching, setFetching] = useState(true);
+    const [isEverythingOK, setIsEverythingOK] = useState(true);
 
     useEffect(() => {
       if ((fetching && nextPage) || 
           (document.body.scrollHeight <= window.innerHeight && document.body.scrollTop === 0)) {  
           getData(nextPage);
       }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [fetching]);
 
     function getData(url) {
         url = checkIfLastPage(url) ? lastPage : url;
-        console.log(url);
         axios.get(url)
         .then(response => {
             const newPokemons = response.data.results.map((pokemon, index) => {
@@ -32,6 +34,9 @@ function AppState({ children }) {
             })
             setPokemons([...pokemons, ...newPokemons]); 
             (url === lastPage) ? setNextPage(null) : setNextPage(response.data.next);
+        })
+        .catch(err => { 
+          setIsEverythingOK(false); 
         })
         .finally(() => {
           setFetching(false);   
@@ -50,7 +55,7 @@ function AppState({ children }) {
     }
 
     const scrollHandler = (e) => {
-        if (e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < 10 && 
+        if (e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < 100 && 
             document.body.scrollHeight > window.innerHeight) {
           setFetching(true);
         }
@@ -73,7 +78,7 @@ function AppState({ children }) {
     }
 
     return (
-        <Context.Provider value={{pokemons, clickHandler, scrollHandler}}>{children}</Context.Provider>
+        <Context.Provider value={{pokemons, clickHandler, scrollHandler, isEverythingOK}}>{children}</Context.Provider>
     );
 };
 

@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import React, { useContext } from 'react';
-import { MenuContext } from '../../context/NavState';
+import { MenuContext } from '../../containers/NavState';
 import './Navigation.scss';
 
 function Navigation() {
@@ -10,12 +10,12 @@ function Navigation() {
   };
   return (
     <nav className={`header__navigation ${isMenuOpen ? 'header__navigation--active' : ''}`}>
-      <ul className="header__links">
+      <ul className="header__nav-links">
         <li>
-          <Link to="/" className="header__nav-link" onClick={clickHandler}>Pokemon list</Link> 
+          <NavLink to="/" className="header__nav-link" onClick={clickHandler}>Pokemon list</NavLink> 
         </li>
         <li>
-          <Link to="/caught" className="header__nav-link" onClick={clickHandler}>Caught pokemons</Link> 
+          <NavLink to="/caught" className="header__nav-link" onClick={clickHandler}>Caught pokemons</NavLink> 
         </li>
       </ul>
     </nav>

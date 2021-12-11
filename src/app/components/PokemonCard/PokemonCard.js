@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Context } from '../../context/AppState';
+import { Context } from '../../containers/AppState';
 import './PokemonCard.scss';
 
 function PokemonCard({ pokemon }) {

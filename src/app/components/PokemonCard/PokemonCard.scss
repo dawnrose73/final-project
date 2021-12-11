@@ -2,9 +2,14 @@
     border: 2px solid #000;
     border-radius: 3px;
     padding: 20px;
-    flex: 0 1 220px;
+    flex: 1 1 220px;
+    // min-width: 220px;
     margin: 5px;
     cursor: pointer;
+    // display: inline-block;
+}
+.card div {
+    margin-bottom: 10px;
 }
 .card__catchBtn {
     padding: 5px;

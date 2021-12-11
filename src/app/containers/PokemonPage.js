@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import Pokemon from '../components/Pokemon/Pokemon';
 import Loader from '../components/Loader/Loader';
-import { Context } from '../context/AppState';
+import { Context } from './AppState';
 
 function PokemonPage() {
   const { pokemons } = useContext(Context);
@@ -18,6 +18,7 @@ function PokemonPage() {
 
   useEffect(() => {
     getData(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const getData = (url) => {
