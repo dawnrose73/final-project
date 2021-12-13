@@ -4,7 +4,7 @@ import PokemonInfo from '../PokemonInfo/PokemonInfo';
 import PokemonImage from '../PokemonImage/PokemonImage';
 import './Pokemon.scss';
 
-function Pokemon({pokemonId, name, abilities, types, weight, imageURL, pokemons}) {
+function Pokemon({ pokemonId, name, abilities, types, weight, imageURL, pokemons }) {
   return (
     <div className="pokemon">
       <div className="container">

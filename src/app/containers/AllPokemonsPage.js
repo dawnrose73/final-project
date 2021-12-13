@@ -5,7 +5,7 @@ import Loader from '../components/Loader/Loader';
 import { Context } from './AppState';
 
 function AllPokemonsPage() {
-  const { pokemons, scrollHandler} = useContext(Context);
+  const { pokemons, scrollHandler } = useContext(Context);
 
   useEffect(() => {
     document.addEventListener('scroll', scrollHandler);

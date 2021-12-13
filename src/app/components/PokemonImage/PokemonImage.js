@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './PokemonImage.scss';
 
-function PokemonImage({name, imageURL}) {
+function PokemonImage({ name, imageURL }) {
   return (
-          <div className="pokemon__image">
-              <img src={imageURL} alt={name} />
-          </div>
+    <div className="pokemon__image">
+        <img src={imageURL} alt={name} />
+    </div>
   );
 }
 

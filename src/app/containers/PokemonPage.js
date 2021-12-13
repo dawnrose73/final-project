@@ -19,11 +19,11 @@ function PokemonPage() {
   const [isEverythingOK, setIsEverythingOK] = useState(true);
 
   useEffect(() => {
-    getData(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`);
+    getPokemonData(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const getData = (url) => {
+  const getPokemonData = (url) => {
     axios.get(url)
     .then(res => {
       setAbilities(getAbilities(res.data));
@@ -52,7 +52,7 @@ function PokemonPage() {
     <>
       {
         isEverythingOK ? 
-        (isDataLoaded ? 
+          (isDataLoaded ? 
             <Pokemon  pokemonId={pokemonId}
                       name={name}
                       abilities={abilities}
