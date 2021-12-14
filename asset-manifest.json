@@ -1,21 +1,21 @@
 {
   "files": {
     "main.css": "/final-project/static/css/main.31b667f1.chunk.css",
-    "main.js": "/final-project/static/js/main.d2de88f9.chunk.js",
-    "main.js.map": "/final-project/static/js/main.d2de88f9.chunk.js.map",
+    "main.js": "/final-project/static/js/main.0ca4ed36.chunk.js",
+    "main.js.map": "/final-project/static/js/main.0ca4ed36.chunk.js.map",
     "runtime-main.js": "/final-project/static/js/runtime-main.2b0a50e1.js",
     "runtime-main.js.map": "/final-project/static/js/runtime-main.2b0a50e1.js.map",
-    "static/js/2.17352bab.chunk.js": "/final-project/static/js/2.17352bab.chunk.js",
-    "static/js/2.17352bab.chunk.js.map": "/final-project/static/js/2.17352bab.chunk.js.map",
+    "static/js/2.6a3656d4.chunk.js": "/final-project/static/js/2.6a3656d4.chunk.js",
+    "static/js/2.6a3656d4.chunk.js.map": "/final-project/static/js/2.6a3656d4.chunk.js.map",
     "index.html": "/final-project/index.html",
     "static/css/main.31b667f1.chunk.css.map": "/final-project/static/css/main.31b667f1.chunk.css.map",
-    "static/js/2.17352bab.chunk.js.LICENSE.txt": "/final-project/static/js/2.17352bab.chunk.js.LICENSE.txt",
+    "static/js/2.6a3656d4.chunk.js.LICENSE.txt": "/final-project/static/js/2.6a3656d4.chunk.js.LICENSE.txt",
     "static/media/index.scss": "/final-project/static/media/Cinzel-Medium.598b1a44.woff"
   },
   "entrypoints": [
     "static/js/runtime-main.2b0a50e1.js",
-    "static/js/2.17352bab.chunk.js",
+    "static/js/2.6a3656d4.chunk.js",
     "static/css/main.31b667f1.chunk.css",
-    "static/js/main.d2de88f9.chunk.js"
+    "static/js/main.0ca4ed36.chunk.js"
   ]
 }
