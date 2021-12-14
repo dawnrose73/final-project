@@ -10,7 +10,7 @@ function PokemonInfo({ pokemonId, name, abilities, types, weight, pokemons }) {
             <p>abilities: {abilities.join(', ')}</p>
             <p>types: {types.join(', ')}</p>
             <p>weight: {weight}</p>
-            <p>caught: {pokemons[pokemonId - 1].caught ? String(pokemons[pokemonId - 1].caught) : 'no'}</p>
+            <p>caught: {pokemons[pokemonId - 1].caught ? `yes, ${String(pokemons[pokemonId - 1].caught)}` : 'no'}</p>
         </div>
     );
 }
