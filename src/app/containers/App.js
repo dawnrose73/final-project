@@ -14,28 +14,28 @@ import NavState from './NavState';
 import AppState from './AppState';
 
 function App() {
-  return (
-    <>
-      <Header>
-        <Logo />
-        <NavState>
-          <Navigation />
-          <BurgerMenu />
-        </NavState>
-      </Header>
-      <AppState>
-        <Routes>
-          <Route path="/" element={<Content />}>
-            <Route index element={<AllPokemonsPage />} />
-            <Route path="pokemons/:pokemonId" element={<PokemonPage />} />
-            <Route path="caught" element={<CaughtPokemonsPage />} />
-            <Route path="*" element={<NotFound />} />
-          </Route>
-        </Routes>
-      </AppState>
-      <Footer />
-    </>
-  );
+    return (
+        <>
+            <Header>
+                <Logo />
+                <NavState>
+                    <Navigation />
+                    <BurgerMenu />
+                </NavState>
+            </Header>
+            <AppState>
+                <Routes>
+                    <Route path="/" element={<Content />}>
+                        <Route index element={<AllPokemonsPage />} />
+                        <Route path="pokemons/:pokemonId" element={<PokemonPage />} />
+                        <Route path="caught" element={<CaughtPokemonsPage />} />
+                        <Route path="*" element={<NotFound />} />
+                    </Route>
+                </Routes>
+            </AppState>
+            <Footer />
+        </>
+    );
 }
 
 export default App;

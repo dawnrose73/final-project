@@ -6,11 +6,11 @@ import './index.scss';
 
 const rootElement = document.getElementById('root');
 render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </React.StrictMode>,
-  rootElement
+    <React.StrictMode>
+        <BrowserRouter>
+            <App />
+        </BrowserRouter>
+    </React.StrictMode>,
+    rootElement
 );
 

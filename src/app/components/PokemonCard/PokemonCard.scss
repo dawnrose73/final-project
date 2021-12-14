@@ -2,22 +2,10 @@
     border: 2px solid #000;
     border-radius: 3px;
     padding: 20px;
-    flex: 1 1 220px;
-    // min-width: 220px;
-    margin: 5px;
     cursor: pointer;
-    // display: inline-block;
+    display: block;
+    width: 220px;
 }
 .card div {
     margin-bottom: 10px;
-}
-.card__catchBtn {
-    padding: 5px;
-    background: rgba(235, 180, 52, 0.5);
-    border: 1px solid #000;
-    border-radius: 2px;
-}
-.card__catchBtn[disabled] {
-    background: rgba(235, 180, 52, 0.2);
-    border: 1px solid rgba(0, 0, 0, 0.2);
 }

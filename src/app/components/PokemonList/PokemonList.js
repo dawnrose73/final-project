@@ -4,19 +4,21 @@ import PokemonCard from '../PokemonCard/PokemonCard';
 import './PokemonList.scss';
 
 function PokemonList({ pokemons }) {
-  return (
-    <div className="pokemonlist">
-        <div className="container">
-            <div className="pokemonlist__inner">
-                {pokemons.map((pokemon, index) => <PokemonCard pokemon={pokemon} key={index} />)}
+    return (
+        <div className="pokemonlist">
+            <div className="container">
+                <div className="pokemonlist__inner">
+                    <div className="pokemonlist__cards">
+                        {pokemons.map((pokemon, index) => <PokemonCard pokemon={pokemon} key={index} />)}
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-  );
+    );
 }
 
 PokemonList.propTypes = {
-  pokemons: PropTypes.array.isRequired,
+    pokemons: PropTypes.array.isRequired,
 }
 
 export default PokemonList;

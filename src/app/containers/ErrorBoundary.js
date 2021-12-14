@@ -4,7 +4,7 @@ import { Context } from './AppState';
 
 function ErrorBoundary({ children }) {
     const { isEverythingOK } = useContext(Context);
-
+    
     return (
         <>
             {isEverythingOK ? children : <NotFound />}

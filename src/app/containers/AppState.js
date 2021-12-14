@@ -18,33 +18,41 @@ function AppState({ children }) {
     const [nextPage, setNextPage] = useState(mainPage);
     const [fetching, setFetching] = useState(true);
     const [isEverythingOK, setIsEverythingOK] = useState(true);
+    const [isThereLocalStorage, setIsThereLocalStorage] = useState(true);
     const [isThereLocalData, setIsThereLocalData] = useState(false);
-
+    
     const navigate = useNavigate();
 
     useEffect(() => {
-      if (localStorage && getLocalData()) {
-        setIsThereLocalData(true);
-      }
-      // eslint-disable-next-line react-hooks/exhaustive-deps
+        if (!localStorage) {
+            setIsThereLocalStorage(false);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    useEffect(() => {
+        if (getLocalData().length > 0) {
+            setIsThereLocalData(true);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     
     useEffect(() => {
         if ((fetching && nextPage) || 
             (document.body.scrollHeight <= window.innerHeight && document.body.scrollTop === 0)) {  
-            getData(nextPage);
+            getPokemonsData(nextPage);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [fetching]);
 
-    const getData = (url) => {
+    const getPokemonsData = (url) => {
         url = checkIfLastPage(url) ? lastPage : url;
         axios.get(url)
         .then(response => {
             const newPokemonsPack = response.data.results.map((pokemon, index) => ({ ...pokemon, id: pokemons.length + index + 1 }));
-            isThereLocalData ?
-              setPokemons([...pokemons, ...setPokemonsFromLocalData(newPokemonsPack)]) :
-              setPokemons([...pokemons, ...newPokemonsPack]); 
+            isThereLocalStorage ?
+                setPokemons([...pokemons, ...setCaughtFromLocalData(newPokemonsPack)]) :
+                setPokemons([...pokemons, ...newPokemonsPack]); 
             (url === lastPage) ? setNextPage(null) : setNextPage(response.data.next);
         })
         .catch(err => { 
@@ -67,52 +75,81 @@ function AppState({ children }) {
     }
 
     const getLocalData = () => {
-        return JSON.parse(localStorage.getItem('caughtPokemons'));
+        return  localStorage.getItem('caughtPokemons') ? 
+                    JSON.parse(localStorage.getItem('caughtPokemons')) : 
+                    [];
     }
     const createPokemonsMap = () => {
         return new Map(getLocalData().map(item => [item.id, item.caught]));
     }
-    const setPokemonsFromLocalData = (pokemons) => {
+    const setCaughtFromLocalData = (pokemons) => {
         const caughtPokemonsMap = createPokemonsMap();
         return pokemons.map(pokemon => 
             (caughtPokemonsMap.get(pokemon.id)) ? 
-              {...pokemon, caught: caughtPokemonsMap.get(pokemon.id)} :
-              pokemon);
+                {...pokemon, caught: caughtPokemonsMap.get(pokemon.id)} :
+                pokemon);
+    }
+
+    const setNewLocalData = (pokemon, catchDate, caughtPokemons) => {
+        localStorage.setItem('caughtPokemons', 
+            JSON.stringify([ ...caughtPokemons, 
+            {...pokemon, caught: String(`${catchDate.getDate()}.${catchDate.getMonth() + 1}.${catchDate.getFullYear()}`)}]));
+    }
+
+    const updateWhenCatch = (pokemons, catchDate, id) => {
+        return pokemons.map(pokemon => {
+            if (pokemon.id === id) {
+                if (isThereLocalStorage) {
+                    setNewLocalData(pokemon, catchDate, getLocalData());
+                }
+                return { ...pokemon, caught: String(`${catchDate.getDate()}.${catchDate.getMonth() + 1}.${catchDate.getFullYear()}`) };
+            }
+            return pokemon;
+        });
+    }
+
+    const updateWhenRelease = (pokemons, id) => {
+        if (isThereLocalStorage) {
+            let indexToDelete = null;
+            const localData = getLocalData();
+            localData.map((localPokemon, index) => {
+                if (localPokemon.id === id) {
+                    indexToDelete = index;
+                }
+                return localPokemon;
+            })
+            localData.splice(indexToDelete, 1);
+            console.log('removing local');
+            localStorage.setItem('caughtPokemons', JSON.stringify(localData));
+        }
+        return pokemons.map(pokemon => {
+            if (pokemon.id === id) {
+                delete pokemon.caught;
+            }
+            return pokemon;
+        });
+    }
+
+    const clickHandler = (id) => {
+        return function(e) {
+            if (e.target.classList.contains("card__catch-btn")) {
+                const catchDate = new Date();
+                const updatedList = updateWhenCatch(pokemons, catchDate, id);
+                setPokemons(updatedList);
+            } else if (e.target.classList.contains("card__release-btn")) {
+                console.log('release')
+                const updatedList = updateWhenRelease(pokemons, id);
+                setPokemons(updatedList);
+            } else {
+                navigate(`pokemons/${id}`);
+            }
+        }
     }
 
     const scrollHandler = (e) => {
         if (e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < 100 && 
             document.body.scrollHeight > window.innerHeight) {
             setFetching(true);
-        }
-    }
-
-    const setNewLocalData = (pokemon, catchDate, caughtPokemons) => {
-        if (!caughtPokemons) {
-          caughtPokemons = [];
-        }
-        localStorage.setItem('caughtPokemons', 
-            JSON.stringify([ ...caughtPokemons, 
-            {...pokemon, caught: String(`${catchDate.getDate()}.${catchDate.getMonth() + 1}.${catchDate.getFullYear()}`)}]))
-    }
-
-    const clickHandler = (id) => {
-        return function(e) {
-            if (e.target.classList.contains("card__catchBtn")) {
-                const catchDate = new Date();
-                const updatedList = pokemons.map(pokemon => {
-                    if (pokemon.id === id) {
-                        if (isThereLocalData) {
-                          setNewLocalData(pokemon, catchDate, getLocalData());
-                        }
-                        return { ...pokemon, caught: String(`${catchDate.getDate()}.${catchDate.getMonth() + 1}.${catchDate.getFullYear()}`) };
-                    }
-                    return pokemon;
-                });
-                setPokemons(updatedList);
-            } else {
-                navigate(`pokemons/${id}`);
-            }
         }
     }
 

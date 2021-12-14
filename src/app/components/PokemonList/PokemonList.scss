@@ -1,9 +1,13 @@
+/* autoprefixer grid: autoplace */
+
 .pokemonlist {
     padding: 20px 0;
-    min-width: 100%;
+    width: 100%;
 }
-.pokemonlist__inner {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+.pokemonlist__cards {
+    display: grid;
+    grid-gap: 5px;
+    grid-template-rows: 1fr;
+    grid-template-columns: repeat(auto-fit, 220px);
+    justify-content: center;
 }
