@@ -6,7 +6,7 @@
 }
 .pokemonlist__cards {
     display: grid;
-    grid-gap: 5px;
+    grid-gap: 10px;
     grid-template-rows: 1fr;
     grid-template-columns: repeat(auto-fit, 220px);
     justify-content: center;
